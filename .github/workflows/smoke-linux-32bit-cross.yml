@@ -1,0 +1,64 @@
+name: smoke-linux-32bit-cross
+
+on:
+  push:
+    branches:
+      - '**'
+    tags-ignore:
+      - '*'
+  pull_request:
+
+
+jobs:
+  perl:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+
+    env:
+        PERL_SKIP_TTY_TEST: 1
+        CONTINUOUS_INTEGRATION: 1
+        WORKSPACE: ${{ github.workspace }}
+
+    strategy:
+        fail-fast: false
+        matrix:
+            # exercise a variety of build options
+            # threads often cause build issues
+            CONFIGURE_ARGS:
+              - "-Uusethreads"
+              - "-Dusethreads"
+              - "-DPERL_GLOBAL_STRUCT_PRIVATE"
+              - "-Duseshrplib -Dusesitecustomize -Duselongdouble PERL_UNICODE='' LANG='en_US.UTF-8'"
+              - "-Duseshrplib -Dusequadmath -Dusecbacktrace -Dusethreads PERL_UNICODE='' LANG='de_DE.UTF-8'"
+              - "-Duserelocatableinc"
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+            fetch-depth: 0
+
+      - name: git cfg + fetch tags
+        run: |
+          git config diff.renameLimit 999999
+          git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+
+      - name: Enable i386 support
+        run: sudo dpkg --add-architecture i386
+
+      - name: Refresh package cache
+        run: sudo apt-get update
+
+      - name: Install 32bit cross build packages
+        run: sudo apt-get -y install gcc-multilib
+
+      - name: Configure
+        run: |
+            ./Configure -des -Dusedevel ${{ matrix.CONFIGURE_ARGS }} -Dcc='gcc' -Accflags='-m32' -Aldflags='-m32' -Alddlflags='-shared -m32' -Dprefix="$HOME/perl-blead" -DDEBUGGING
+
+      - name: Build
+        run: |
+            make -j2
+
+      - name: Run Tests
+        run: |
+            TEST_JOBS=2 make -j2 test

@@ -323,8 +323,8 @@ S_ithread_free(pTHX_ ithread *thread)
 
     PerlMemShared_free(thread);
 
-    /* total_threads >= 1 is used to veto cleanup by the main thread,
-     * should it happen to exit while other threads still exist.
+    /* total_threads > joinable_threads is used to veto cleanup by the main
+     * thread, should it happen to exit while other threads still exist.
      * Decrement this as the very last thing in the thread's existence.
      * Otherwise, MY_POOL and global state such as PL_op_mutex may get
      * freed while we're still using it.
@@ -353,7 +353,7 @@ S_exit_warning(pTHX)
     dMY_POOL;
 
     MUTEX_LOCK(&MY_POOL.create_destruct_mutex);
-    veto_cleanup = (MY_POOL.total_threads > 0);
+    veto_cleanup = (MY_POOL.total_threads > MY_POOL.joinable_threads);
     warn         = (MY_POOL.running_threads || MY_POOL.joinable_threads);
     MUTEX_UNLOCK(&MY_POOL.create_destruct_mutex);
 

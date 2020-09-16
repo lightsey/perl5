@@ -18,6 +18,7 @@ jobs:
     env:
       PERL_SKIP_TTY_TEST: 1
       CONTINUOUS_INTEGRATION: 1
+      CYGWIN: disable_pcon
 
     steps:
       - run: git config --global core.autocrlf false
@@ -32,25 +33,21 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         shell: cmd
         run: |
-          SET CYGWIN=disable_pcon
           path %GITHUB_WORKSPACE%\cygwin\bin;%GITHUB_WORKSPACE%\cygwin\usr\bin
           sh -c "mkdir -p ~; cd ~; echo \"$GITHUB_REPOSITORY\"; git clone -qn \"https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY\" work ; cd work ; if [ \"$GITHUB_EVENT_NAME\" = pull_request ] ; then git fetch origin \"$GITHUB_REF\" && git checkout FETCH_HEAD ; else  git checkout \"$GITHUB_SHA\" ; fi"
       - name: Configure
         shell: cmd
         run: |
-          SET CYGWIN=disable_pcon
           path %GITHUB_WORKSPACE%\cygwin\bin;%GITHUB_WORKSPACE%\cygwin\usr\bin
           sh -c "cd ~/work; ./Configure -des -Dusedevel -Doptimize=-g -DDEBUGGING"
       - name: Build
         shell: cmd
         run: |
-          SET CYGWIN=disable_pcon
           path %GITHUB_WORKSPACE%\cygwin\bin;%GITHUB_WORKSPACE%\cygwin\usr\bin
           sh -c "cd ~/work; make -j2"
       - name: Run Tests
         shell: cmd
         run: |
-          SET CYGWIN=disable_pcon
           path %GITHUB_WORKSPACE%\cygwin\bin;%GITHUB_WORKSPACE%\cygwin\usr\bin
           sh -c "cd ~/work; make -j2 test"
 
@@ -62,6 +59,7 @@ jobs:
     env:
       PERL_SKIP_TTY_TEST: 1
       CONTINUOUS_INTEGRATION: 1
+      CYGWIN: disable_pcon
 
     steps:
       - run: git config --global core.autocrlf false
@@ -76,25 +74,21 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         shell: cmd
         run: |
-          SET CYGWIN=disable_pcon
           path %GITHUB_WORKSPACE%\cygwin\bin;%GITHUB_WORKSPACE%\cygwin\usr\bin
           sh -c "mkdir -p ~; cd ~; echo \"$GITHUB_REPOSITORY\"; git clone -qn \"https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY\" work ; cd work ; if [ \"$GITHUB_EVENT_NAME\" = pull_request ] ; then git fetch origin \"$GITHUB_REF\" && git checkout FETCH_HEAD ; else  git checkout \"$GITHUB_SHA\" ; fi"
       - name: Configure
         shell: cmd
         run: |
-          SET CYGWIN=disable_pcon
           path %GITHUB_WORKSPACE%\cygwin\bin;%GITHUB_WORKSPACE%\cygwin\usr\bin
           sh -c "cd ~/work; ./Configure -des -Dusedevel -Doptimize=-g -DDEBUGGING"
       - name: Build
         shell: cmd
         run: |
-          SET CYGWIN=disable_pcon
           path %GITHUB_WORKSPACE%\cygwin\bin;%GITHUB_WORKSPACE%\cygwin\usr\bin
           sh -c "cd ~/work; make -j2"
       - name: Run Tests
         shell: cmd
         run: |
-          SET CYGWIN=disable_pcon
           path %GITHUB_WORKSPACE%\cygwin\bin;%GITHUB_WORKSPACE%\cygwin\usr\bin
           sh -c "cd ~/work; make -j2 test"
 
@@ -106,6 +100,7 @@ jobs:
     env:
       PERL_SKIP_TTY_TEST: 1
       CONTINUOUS_INTEGRATION: 1
+      CYGWIN: disable_pcon
 
     steps:
       - run: git config --global core.autocrlf false
@@ -120,25 +115,21 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         shell: cmd
         run: |
-          SET CYGWIN=disable_pcon
           path %GITHUB_WORKSPACE%\cygwin\bin;%GITHUB_WORKSPACE%\cygwin\usr\bin
           sh -c "mkdir -p ~; cd ~; echo \"$GITHUB_REPOSITORY\"; git clone -qn \"https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY\" work ; cd work ; if [ \"$GITHUB_EVENT_NAME\" = pull_request ] ; then git fetch origin \"$GITHUB_REF\" && git checkout FETCH_HEAD ; else  git checkout \"$GITHUB_SHA\" ; fi"
       - name: Configure
         shell: cmd
         run: |
-          SET CYGWIN=disable_pcon
           path %GITHUB_WORKSPACE%\cygwin\bin;%GITHUB_WORKSPACE%\cygwin\usr\bin
           sh -c "cd ~/work; ./Configure -des -Dusedevel -Doptimize=-g -DDEBUGGING"
       - name: Build
         shell: cmd
         run: |
-          SET CYGWIN=disable_pcon
           path %GITHUB_WORKSPACE%\cygwin\bin;%GITHUB_WORKSPACE%\cygwin\usr\bin
           sh -c "cd ~/work; make -j2"
       - name: Run Tests
         shell: cmd
         run: |
-          SET CYGWIN=disable_pcon
           path %GITHUB_WORKSPACE%\cygwin\bin;%GITHUB_WORKSPACE%\cygwin\usr\bin
           sh -c "cd ~/work; make -j2 test"
 
@@ -150,6 +141,7 @@ jobs:
     env:
       PERL_SKIP_TTY_TEST: 1
       CONTINUOUS_INTEGRATION: 1
+      CYGWIN: disable_pcon
 
     steps:
       - run: git config --global core.autocrlf false
@@ -164,25 +156,21 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         shell: cmd
         run: |
-          SET CYGWIN=disable_pcon
           path %GITHUB_WORKSPACE%\cygwin\bin;%GITHUB_WORKSPACE%\cygwin\usr\bin
           sh -c "mkdir -p ~; cd ~; echo \"$GITHUB_REPOSITORY\"; git clone -qn \"https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY\" work ; cd work ; if [ \"$GITHUB_EVENT_NAME\" = pull_request ] ; then git fetch origin \"$GITHUB_REF\" && git checkout FETCH_HEAD ; else  git checkout \"$GITHUB_SHA\" ; fi"
       - name: Configure
         shell: cmd
         run: |
-          SET CYGWIN=disable_pcon
           path %GITHUB_WORKSPACE%\cygwin\bin;%GITHUB_WORKSPACE%\cygwin\usr\bin
           sh -c "cd ~/work; ./Configure -des -Dusedevel -Doptimize=-g -DDEBUGGING"
       - name: Build
         shell: cmd
         run: |
-          SET CYGWIN=disable_pcon
           path %GITHUB_WORKSPACE%\cygwin\bin;%GITHUB_WORKSPACE%\cygwin\usr\bin
           sh -c "cd ~/work; make -j2"
       - name: Run Tests
         shell: cmd
         run: |
-          SET CYGWIN=disable_pcon
           path %GITHUB_WORKSPACE%\cygwin\bin;%GITHUB_WORKSPACE%\cygwin\usr\bin
           sh -c "cd ~/work; make -j2 test"
 
@@ -194,6 +182,7 @@ jobs:
     env:
       PERL_SKIP_TTY_TEST: 1
       CONTINUOUS_INTEGRATION: 1
+      CYGWIN: disable_pcon
 
     steps:
       - run: git config --global core.autocrlf false
@@ -208,25 +197,21 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         shell: cmd
         run: |
-          SET CYGWIN=disable_pcon
           path %GITHUB_WORKSPACE%\cygwin\bin;%GITHUB_WORKSPACE%\cygwin\usr\bin
           sh -c "mkdir -p ~; cd ~; echo \"$GITHUB_REPOSITORY\"; git clone -qn \"https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY\" work ; cd work ; if [ \"$GITHUB_EVENT_NAME\" = pull_request ] ; then git fetch origin \"$GITHUB_REF\" && git checkout FETCH_HEAD ; else  git checkout \"$GITHUB_SHA\" ; fi"
       - name: Configure
         shell: cmd
         run: |
-          SET CYGWIN=disable_pcon
           path %GITHUB_WORKSPACE%\cygwin\bin;%GITHUB_WORKSPACE%\cygwin\usr\bin
           sh -c "cd ~/work; ./Configure -des -Dusedevel -Doptimize=-g -DDEBUGGING"
       - name: Build
         shell: cmd
         run: |
-          SET CYGWIN=disable_pcon
           path %GITHUB_WORKSPACE%\cygwin\bin;%GITHUB_WORKSPACE%\cygwin\usr\bin
           sh -c "cd ~/work; make -j2"
       - name: Run Tests
         shell: cmd
         run: |
-          SET CYGWIN=disable_pcon
           path %GITHUB_WORKSPACE%\cygwin\bin;%GITHUB_WORKSPACE%\cygwin\usr\bin
           sh -c "cd ~/work; make -j2 test"
 
@@ -238,6 +223,7 @@ jobs:
     env:
       PERL_SKIP_TTY_TEST: 1
       CONTINUOUS_INTEGRATION: 1
+      CYGWIN: disable_pcon
 
     steps:
       - run: git config --global core.autocrlf false
@@ -252,25 +238,21 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         shell: cmd
         run: |
-          SET CYGWIN=disable_pcon
           path %GITHUB_WORKSPACE%\cygwin\bin;%GITHUB_WORKSPACE%\cygwin\usr\bin
           sh -c "mkdir -p ~; cd ~; echo \"$GITHUB_REPOSITORY\"; git clone -qn \"https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY\" work ; cd work ; if [ \"$GITHUB_EVENT_NAME\" = pull_request ] ; then git fetch origin \"$GITHUB_REF\" && git checkout FETCH_HEAD ; else  git checkout \"$GITHUB_SHA\" ; fi"
       - name: Configure
         shell: cmd
         run: |
-          SET CYGWIN=disable_pcon
           path %GITHUB_WORKSPACE%\cygwin\bin;%GITHUB_WORKSPACE%\cygwin\usr\bin
           sh -c "cd ~/work; ./Configure -des -Dusedevel -Doptimize=-g -DDEBUGGING"
       - name: Build
         shell: cmd
         run: |
-          SET CYGWIN=disable_pcon
           path %GITHUB_WORKSPACE%\cygwin\bin;%GITHUB_WORKSPACE%\cygwin\usr\bin
           sh -c "cd ~/work; make -j2"
       - name: Run Tests
         shell: cmd
         run: |
-          SET CYGWIN=disable_pcon
           path %GITHUB_WORKSPACE%\cygwin\bin;%GITHUB_WORKSPACE%\cygwin\usr\bin
           sh -c "cd ~/work; make -j2 test"
 
@@ -282,6 +264,7 @@ jobs:
     env:
       PERL_SKIP_TTY_TEST: 1
       CONTINUOUS_INTEGRATION: 1
+      CYGWIN: disable_pcon
 
     steps:
       - run: git config --global core.autocrlf false
@@ -296,25 +279,21 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         shell: cmd
         run: |
-          SET CYGWIN=disable_pcon
           path %GITHUB_WORKSPACE%\cygwin\bin;%GITHUB_WORKSPACE%\cygwin\usr\bin
           sh -c "mkdir -p ~; cd ~; echo \"$GITHUB_REPOSITORY\"; git clone -qn \"https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY\" work ; cd work ; if [ \"$GITHUB_EVENT_NAME\" = pull_request ] ; then git fetch origin \"$GITHUB_REF\" && git checkout FETCH_HEAD ; else  git checkout \"$GITHUB_SHA\" ; fi"
       - name: Configure
         shell: cmd
         run: |
-          SET CYGWIN=disable_pcon
           path %GITHUB_WORKSPACE%\cygwin\bin;%GITHUB_WORKSPACE%\cygwin\usr\bin
           sh -c "cd ~/work; ./Configure -des -Dusedevel -Doptimize=-g -DDEBUGGING"
       - name: Build
         shell: cmd
         run: |
-          SET CYGWIN=disable_pcon
           path %GITHUB_WORKSPACE%\cygwin\bin;%GITHUB_WORKSPACE%\cygwin\usr\bin
           sh -c "cd ~/work; make -j2"
       - name: Run Tests
         shell: cmd
         run: |
-          SET CYGWIN=disable_pcon
           path %GITHUB_WORKSPACE%\cygwin\bin;%GITHUB_WORKSPACE%\cygwin\usr\bin
           sh -c "cd ~/work; make -j2 test"
 
@@ -326,6 +305,7 @@ jobs:
     env:
       PERL_SKIP_TTY_TEST: 1
       CONTINUOUS_INTEGRATION: 1
+      CYGWIN: disable_pcon
 
     steps:
       - run: git config --global core.autocrlf false
@@ -340,25 +320,21 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         shell: cmd
         run: |
-          SET CYGWIN=disable_pcon
           path %GITHUB_WORKSPACE%\cygwin\bin;%GITHUB_WORKSPACE%\cygwin\usr\bin
           sh -c "mkdir -p ~; cd ~; echo \"$GITHUB_REPOSITORY\"; git clone -qn \"https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY\" work ; cd work ; if [ \"$GITHUB_EVENT_NAME\" = pull_request ] ; then git fetch origin \"$GITHUB_REF\" && git checkout FETCH_HEAD ; else  git checkout \"$GITHUB_SHA\" ; fi"
       - name: Configure
         shell: cmd
         run: |
-          SET CYGWIN=disable_pcon
           path %GITHUB_WORKSPACE%\cygwin\bin;%GITHUB_WORKSPACE%\cygwin\usr\bin
           sh -c "cd ~/work; ./Configure -des -Dusedevel -Doptimize=-g -DDEBUGGING"
       - name: Build
         shell: cmd
         run: |
-          SET CYGWIN=disable_pcon
           path %GITHUB_WORKSPACE%\cygwin\bin;%GITHUB_WORKSPACE%\cygwin\usr\bin
           sh -c "cd ~/work; make -j2"
       - name: Run Tests
         shell: cmd
         run: |
-          SET CYGWIN=disable_pcon
           path %GITHUB_WORKSPACE%\cygwin\bin;%GITHUB_WORKSPACE%\cygwin\usr\bin
           sh -c "cd ~/work; make -j2 test"
 
@@ -370,6 +346,7 @@ jobs:
     env:
       PERL_SKIP_TTY_TEST: 1
       CONTINUOUS_INTEGRATION: 1
+      CYGWIN: disable_pcon
 
     steps:
       - run: git config --global core.autocrlf false
@@ -384,25 +361,21 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         shell: cmd
         run: |
-          SET CYGWIN=disable_pcon
           path %GITHUB_WORKSPACE%\cygwin\bin;%GITHUB_WORKSPACE%\cygwin\usr\bin
           sh -c "mkdir -p ~; cd ~; echo \"$GITHUB_REPOSITORY\"; git clone -qn \"https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY\" work ; cd work ; if [ \"$GITHUB_EVENT_NAME\" = pull_request ] ; then git fetch origin \"$GITHUB_REF\" && git checkout FETCH_HEAD ; else  git checkout \"$GITHUB_SHA\" ; fi"
       - name: Configure
         shell: cmd
         run: |
-          SET CYGWIN=disable_pcon
           path %GITHUB_WORKSPACE%\cygwin\bin;%GITHUB_WORKSPACE%\cygwin\usr\bin
           sh -c "cd ~/work; ./Configure -des -Dusedevel -Doptimize=-g -DDEBUGGING"
       - name: Build
         shell: cmd
         run: |
-          SET CYGWIN=disable_pcon
           path %GITHUB_WORKSPACE%\cygwin\bin;%GITHUB_WORKSPACE%\cygwin\usr\bin
           sh -c "cd ~/work; make -j2"
       - name: Run Tests
         shell: cmd
         run: |
-          SET CYGWIN=disable_pcon
           path %GITHUB_WORKSPACE%\cygwin\bin;%GITHUB_WORKSPACE%\cygwin\usr\bin
           sh -c "cd ~/work; make -j2 test"
 
@@ -414,6 +387,7 @@ jobs:
     env:
       PERL_SKIP_TTY_TEST: 1
       CONTINUOUS_INTEGRATION: 1
+      CYGWIN: disable_pcon
 
     steps:
       - run: git config --global core.autocrlf false
@@ -428,24 +402,20 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         shell: cmd
         run: |
-          SET CYGWIN=disable_pcon
           path %GITHUB_WORKSPACE%\cygwin\bin;%GITHUB_WORKSPACE%\cygwin\usr\bin
           sh -c "mkdir -p ~; cd ~; echo \"$GITHUB_REPOSITORY\"; git clone -qn \"https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY\" work ; cd work ; if [ \"$GITHUB_EVENT_NAME\" = pull_request ] ; then git fetch origin \"$GITHUB_REF\" && git checkout FETCH_HEAD ; else  git checkout \"$GITHUB_SHA\" ; fi"
       - name: Configure
         shell: cmd
         run: |
-          SET CYGWIN=disable_pcon
           path %GITHUB_WORKSPACE%\cygwin\bin;%GITHUB_WORKSPACE%\cygwin\usr\bin
           sh -c "cd ~/work; ./Configure -des -Dusedevel -Doptimize=-g -DDEBUGGING"
       - name: Build
         shell: cmd
         run: |
-          SET CYGWIN=disable_pcon
           path %GITHUB_WORKSPACE%\cygwin\bin;%GITHUB_WORKSPACE%\cygwin\usr\bin
           sh -c "cd ~/work; make -j2"
       - name: Run Tests
         shell: cmd
         run: |
-          SET CYGWIN=disable_pcon
           path %GITHUB_WORKSPACE%\cygwin\bin;%GITHUB_WORKSPACE%\cygwin\usr\bin
           sh -c "cd ~/work; make -j2 test"

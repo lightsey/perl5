@@ -9,7 +9,7 @@ BEGIN {
      skip_all_without_config('useithreads');
      skip_all_if_miniperl("no dynamic loading on miniperl, no threads");
 
-     plan(30);
+     plan(31);
 }
 
 use strict;
@@ -422,5 +422,17 @@ binmode(STDOUT,":encoding(utf8)");
 threads->create(sub{});
 print "ok\n";
 CODE
+
+diag("starting child thread exit test");
+foreach my $count ( 1 .. 1000 ) {
+    fresh_perl(q{no warnings; close STDERR; use threads; threads->create(sub {exit(99)});sleep(1) for (0..10);exit(86);});
+    if ( $? != ( 99 << 8 ) ) {
+        die "Expected 99 exit code. Got exit code (" . ( $? >> 8 ) . ") and signal ( " . ( $? & 0xff ) . ") during iteration $count of 1000.";
+    }
+    elsif ( 0 == $count % 100 ) {
+        diag("completed $count iterations");
+    }
+}
+ok( 1, 'Exiting from a child thread sets exit code properly' );
 
 # EOF
